@@ -3,3 +3,15 @@
 - [how to run mongodb on kubernetes](https://codelabs.developers.google.com/codelabs/cloud-mongodb-statefulset/index.html?index=..%2F..index#2)
 - create cluster `gcloud container clusters create <cluster_name> --num-nodes=2 --project=<project_name> --zone=us-east1-b`
 - get credentials in local after cluster created `gcloud container clusters get-credentials <cluster_name> --project=<project_name> --zone=us-east1-b`
+- basic yaml setup that can be used in other project `git clone https://github.com/thesandlord/mongo-k8s-sidecar.git`
+- for database replication need `StorageClass` a `Headless Service` and a `StatefulSet`
+- deploy StorageClass for database setup `kubectl apply -f googlecloud_ssd.yaml`
+- deploy StatefulSet `kubectl apply -f mongo-statefulset.yaml`
+- mongodb k8s sidecar `https://github.com/cvallance/mongo-k8s-sidecar`
+- retrive StatefulSet status using kubectl `kubectl get statefulset`
+- retrive pod status within your cluster `kubectl get pods`
+- connect to mongodb running pod `kubectl exec -ti mongo-0 mongo`
+- delete StatefulSet within cluster `kubectl delete statefulset <StatefulSet_name>`
+- delete service `kubectl delete svc <service_name>`
+- delete volumes `kubectl delete pvc -l role=<role_name>`
+- delete clusters `gcloud container clusters delete <cluster_name> --project=<project_name> --zone=us-east1-b`
